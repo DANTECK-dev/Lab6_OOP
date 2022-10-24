@@ -12,11 +12,20 @@
         private string? Surname { get; }
         private string? Patronymic { get; }
 
-        public Person(string Name, string Surname, string Patronymic)
+        public Person(string? Name, string? Surname, string? Patronymic)
         {
             this.Name = Name;
             this.Surname = Surname;
             this.Patronymic = Patronymic;
+        }
+        public Person(Person? person)
+        {
+            if (person is not null)
+            {
+                this.Name = person!.Name ?? this.Name;
+                this.Surname = person!.Surname ?? this.Surname;
+                this.Patronymic = person!.Patronymic ?? this.Patronymic;
+            }
         }
         public override string ToString()
         {
@@ -47,15 +56,16 @@
                 count = value;
             }
         }
-        public void Add(Person person)
+        public void Add(Person? person)
         {
             for(int i = 0; i < Count; i++)
             {
                 if (head is null || tail is null) break;
+
                 if (Get(i) is null)
                 {
                     Set(person, i);
-                    Console.WriteLine(person.ToString() + " Added");
+                    Console.WriteLine(person!.ToString() + " Added");
                     return;
                 }
             }
@@ -75,6 +85,13 @@
 
             count++;
             Console.WriteLine(person.ToString() + " Added");
+        }
+        public void Add(Person?[] persons)
+        {
+            foreach(var person in persons)
+            {
+                this.Add(person);
+            }
         }
         public Person? Remove()
         {
@@ -123,11 +140,11 @@
         }
         public void Set(Person? person, int index)
         {
-            if (person == null)
-            {
-                Console.WriteLine("Person is empty");
-                return;
-            }
+            //if (person == null)
+            //{
+            //    Console.WriteLine("Person is empty");
+            //    return;
+            //}
             if (head is null || tail is null)
             {
                 Console.WriteLine("ListQueue is empty");
@@ -175,6 +192,7 @@
                 if (index == i)
                 {
                     Person? person = cur?.Data;
+                    count = person is null ? count: count - 1;
                     cur!.Data = null;
                     return person;
                 }
@@ -188,18 +206,22 @@
             {
                 Person? cur = Get(i);
 
-                if (cur is null) continue;
+                if (cur is null)
+                {
+                    Console.Write("");
+                }
 
                 for (int j = i; j >= 0; j--)
                 {
-                    if (Get(j - 1) is null || Get(j) is null) continue;
+                    //if (Get(j - 1) is null || Get(j) is null) continue;
                     Set(Get(j - 1), j);
                     if (j == 0)
                     {
                         Set(cur, j);
                         break;
                     }
-                    if (cur!.ToString()[0] > Get(j - 1)?.ToString()[0] || cur!.ToString()[0] == Get(j - 1)?.ToString()[0])
+                    if (cur is null ||
+                        cur.ToString()[0] >= Get(j - 1)?.ToString()[0])
                     {
                         Set(cur, j);
                         break;

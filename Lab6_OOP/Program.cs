@@ -92,17 +92,22 @@ namespace Lab6_OOP
             listQueue.Null(20);
             listQueue.Get(20);
 
-            listQueue.Print();
+            listQueue.GetMassive();
 
-            listQueue.Add(new Person("dfg", "zxcv", "dsf"));
-            listQueue.Add(new Person("dfg", "zxcv", "dsf"));
-            listQueue.Add(new Person("dfg", "zxcv", "dsf"));
-            listQueue.Add(new Person("dfg", "zxcv", "dsf"));
-            listQueue.Add(new Person("dfg", "zxcv", "dsf"));
-            listQueue.Add(new Person("dfg", "zxcv", "dsf"));
-            listQueue.Add(new Person("dfg", "zxcv", "dsf"));
+            Person[] persons = new Person[7] 
+            {
+                new Person("dfg", "zxcv", "dsf"), 
+                new Person("dfg", "zxcv", "dsf"), 
+                new Person("dfg", "zxcv", "dsf"),
+                new Person("dfg", "zxcv", "dsf"),
+                new Person("dfg", "zxcv", "dsf"),
+                new Person("dfg", "zxcv", "dsf"),
+                new Person("dfg", "zxcv", "dsf") 
+            };
 
-            listQueue.Print();
+            listQueue.Add(persons);
+
+            listQueue.GetMassive();
 
             Console.ReadKey();
             Console.Clear();
