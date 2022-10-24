@@ -6,6 +6,11 @@
         public Person? Remove();
         public void GetMassive();
     }
+    public static class Colors
+    {
+        public static ConsoleColor defaultForeground = Console.ForegroundColor;
+        public static ConsoleColor defaultBackground = Console.BackgroundColor;
+    }
     public class Person
     {
         private string? Name { get; }
@@ -14,22 +19,24 @@
 
         public Person(string? Name, string? Surname, string? Patronymic)
         {
-            this.Name = Name;
-            this.Surname = Surname;
-            this.Patronymic = Patronymic;
+            this.Name = Name ?? this.Name;
+            this.Surname = Surname ?? this.Surname;
+            this.Patronymic = Patronymic ?? this.Patronymic;
         }
         public Person(Person? person)
         {
             if (person is not null)
             {
-                this.Name = person!.Name ?? this.Name;
-                this.Surname = person!.Surname ?? this.Surname;
-                this.Patronymic = person!.Patronymic ?? this.Patronymic;
+                this.Name ??= person.Name;
+                this.Surname ??= person.Surname;
+                this.Patronymic ??= person.Patronymic;
             }
         }
         public override string ToString()
         {
-            return Name + " " + Surname + " " + Patronymic;
+            return (Name ?? "No name") 
+                + " " + (Surname ?? "No surname") 
+                + " " + (Patronymic ?? "No patronymic");
         }
     }
     public class Node

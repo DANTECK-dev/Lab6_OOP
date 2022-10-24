@@ -97,12 +97,12 @@ namespace Lab6_OOP
             Person[] persons = new Person[7] 
             {
                 new Person("dfg", "zxcv", "dsf"), 
-                new Person("dfg", "zxcv", "dsf"), 
-                new Person("dfg", "zxcv", "dsf"),
-                new Person("dfg", "zxcv", "dsf"),
-                new Person("dfg", "zxcv", "dsf"),
-                new Person("dfg", "zxcv", "dsf"),
-                new Person("dfg", "zxcv", "dsf") 
+                new Person("dfg", null, "dsf"), 
+                new Person("dfg", "zxcv", null),
+                new Person("dfg", null, "dsf"),
+                new Person(null, "zxcv", "dsf"),
+                new Person("dfg", "zxcv", null),
+                new Person("dfg", null, "dsf") 
             };
 
             listQueue.Add(persons);
